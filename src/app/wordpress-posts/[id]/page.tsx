@@ -1,7 +1,8 @@
 import Link from "next/link"
 
-export default async function WordpressPost({params}: {params: {id: number}}) {
-  const data = await fetch(`http://wordpress.test/wp-json/wp/v2/posts/${params.id}`)
+export default async function WordpressPost({params}: {params: Promise<{id: number}>}) {
+  const {id} = await params
+  const data = await fetch(`http://wordpress.test/wp-json/wp/v2/posts/${id}`)
   const post = await data.json()
 
   const authordata = await fetch(`http://wordpress.test/wp-json/wp/v2/users/${post.author}`)

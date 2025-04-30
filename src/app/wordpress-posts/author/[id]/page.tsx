@@ -1,5 +1,7 @@
-export default async function Author({params}: {params: {id: number}}) {
-  const authordata = await fetch(`http://wordpress.test/wp-json/wp/v2/users/${params.id}`)
+export default async function Author({params}: {params: Promise<{id: number}>}) {
+
+  const {id} = await params
+  const authordata = await fetch(`http://wordpress.test/wp-json/wp/v2/users/${id}`)
   const author = await authordata.json()
 
   return (

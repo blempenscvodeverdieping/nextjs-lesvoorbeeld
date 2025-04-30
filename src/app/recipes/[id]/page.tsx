@@ -1,5 +1,6 @@
-export default async function Recipe({params}: { params: { id: number } }) {
-  const data = await fetch(`https://dummyjson.com/recipes/${params.id}`);
+export default async function Recipe({params}: { params: Promise<{ id: number }> }) {
+  const {id} = await params;
+  const data = await fetch(`https://dummyjson.com/recipes/${id}`);
   const recipe = await data.json();
   
   return (

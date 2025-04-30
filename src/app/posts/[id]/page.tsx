@@ -2,8 +2,9 @@ import { verifySession } from "@/lib/dal";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
-export default async function Post({params}: { params: { id: number } }) {
-  const data = await fetch(`http://inertia-les.test/api/posts/${params.id}`)
+export default async function Post({params}: { params: Promise<{ id: number }> }) {
+  const {id} = await params
+  const data = await fetch(`http://inertia-les.test/api/posts/${id}`)
   const post = await data.json();
 
   const session = await verifySession();
@@ -17,7 +18,7 @@ export default async function Post({params}: { params: { id: number } }) {
       throw new Error("Unauthorized");
     }
     
-    await fetch(`http://inertia-les.test/api/posts/${params.id}`, {
+    await fetch(`http://inertia-les.test/api/posts/${id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',
