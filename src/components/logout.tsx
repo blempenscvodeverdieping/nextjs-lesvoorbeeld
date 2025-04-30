@@ -1,5 +1,4 @@
 import { verifySession } from "@/lib/dal"
-import { deleteSession } from "@/lib/session"
 import { cookies } from "next/headers"
 import { redirect } from "next/navigation"
 
@@ -9,7 +8,6 @@ export default async function Logout() {
 
   async function logout() {
     "use server"
-    // deleteSession()
     const cookieStore = await cookies()
     cookieStore.delete('session')
     redirect('/login')

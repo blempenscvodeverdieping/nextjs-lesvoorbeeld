@@ -17,7 +17,7 @@ export default async function Post({params}: { params: { id: number } }) {
       throw new Error("Unauthorized");
     }
     
-    const response = await fetch(`http://inertia-les.test/api/posts/${params.id}`, {
+    await fetch(`http://inertia-les.test/api/posts/${params.id}`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

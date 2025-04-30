@@ -1,7 +1,8 @@
 import Link from "next/link";
 
 export default async function Posts() {
-  const data = await fetch("http://inertia-les.test/api/posts")
+  const url = process.env.API_URL
+  const data = await fetch(url+"/posts")
   const posts = await data.json()
 
   return (

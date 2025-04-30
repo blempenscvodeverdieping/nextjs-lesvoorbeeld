@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Layout({children} : {children: React.ReactNode}) {
   return (
     <div>
@@ -10,10 +12,10 @@ export default function Layout({children} : {children: React.ReactNode}) {
         <div className="w-1/4">
           <ul>
             <li>
-              <a href="/posts/category/html">HTML</a>
+              <Link href="/posts/category/html">HTML</Link>
             </li>
             <li>
-              <a href="/posts/category/php">PHP</a>
+              <Link href="/posts/category/php">PHP</Link>
             </li>
           </ul>
         </div>
