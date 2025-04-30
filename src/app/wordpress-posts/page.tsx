@@ -9,7 +9,7 @@ export default async function WordpressPosts() {
       <h1>Wordpress Posts</h1>
       <p>This is a list of posts from Wordpress.</p>
       <ul>
-        {posts.map((post: any) => (
+        {posts.map((post: {id:number, title: {rendered:string}, excerpt: {rendered:string}}) => (
           <li key={post.id}>
             <h2>{post.title.rendered}</h2>
             <p>{post.excerpt.rendered}</p>
