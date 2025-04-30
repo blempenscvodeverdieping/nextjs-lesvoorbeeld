@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import Link from "next/link";
+import Logout from "@/components/logout";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,9 +17,38 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`antialiased`}
       >
-        {children}
+        <header className="flex justify-between items-center p-4 bg-gray-800 text-white">
+          <h1>Logo</h1>
+          <ul className="flex space-x-4 items-center">
+            <li>
+              <Link href="/">Home</Link>
+            </li>
+            <li>
+              <Link href="/posts">Posts</Link>
+            </li>
+            <li>
+              <Link href="/wordpress-posts">Wordpress Posts</Link>
+            </li>
+            <li>
+              <Link href="/recipes">Recipes</Link>
+            </li>
+            <li>
+              <Link href="/about">About</Link>
+            </li>
+            <li>
+              <Link href="/contact">Contact</Link>
+            </li>
+          </ul>
+        </header>
+        <main className="p-4">
+          {children}
+        </main>
+        <footer className="p-4 bg-gray-800 text-white">
+          <p>Copyright 2025</p>
+          <Logout />
+        </footer>
       </body>
     </html>
   );
